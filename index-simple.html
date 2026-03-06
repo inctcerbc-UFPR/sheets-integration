@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAM - MVP Google Sheets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-text">RAM</span>
+                <span class="logo-subtitle">MVP Sheets</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>MVP - Integração Google Sheets</h1>
+            <p class="hero-subtitle">Teste rápido de atualização dinâmica de dados</p>
+            <p class="hero-meta">Abra o Console (F12) para ver os logs</p>
+        </div>
+    </section>
+
+    <!-- Equipe Dinâmica -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Equipe (Dados do Google Sheets)</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="team-section">
+                <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                    ℹ️ Estes dados são carregados automaticamente do Google Sheets a cada 10 segundos
+                </p>
+                <div class="team-grid" data-sheets="equipe">
+                    <!-- Dados carregados dinamicamente aqui -->
+                    <div style="text-align: center; grid-column: 1/-1; color: #999;">
+                        Carregando dados...
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="atualizarSheets()" style="
+                    background: #1a2a4d;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 14px;
+                ">
+                    🔄 Atualizar Agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instruções -->
+    <section style="background: #f0f7ff; padding: 40px 20px;">
+        <div class="container">
+            <h2 style="color: #1a2a4d; margin-bottom: 20px;">📋 Como Testar</h2>
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">1. Criar Planilha</h3>
+                <p>Acesse <a href="https://sheets.google.com" target="_blank">Google Sheets</a> e crie uma nova planilha</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">2. Adicionar Dados</h3>
+                <p>Na primeira linha (cabeçalho):</p>
+                <code style="display: block; background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    Nome | Instituição
+                </code>
+                <p>Depois adicione alguns dados:</p>
+                <code style="display: block; background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    Prof. João | UFPR<br>
+                    Prof. Maria | UFMS<br>
+                    Prof. Pedro | UNIFESP
+                </code>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">3. Compartilhar</h3>
+                <p>Clique em "Compartilhar" → Selecione "Qualquer pessoa com o link"</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">4. Copiar ID</h3>
+                <p>A URL fica assim:</p>
+                <code style="display: block; background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px; word-break: break-all;">
+                    https://docs.google.com/spreadsheets/d/<strong>1ABC123DEF456GHI789</strong>/edit
+                </code>
+                <p>Copie a parte em negrito (o ID)</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">5. Configurar</h3>
+                <p>Abra o arquivo <code>sheets-config-simple.js</code> e altere:</p>
+                <code style="display: block; background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    GOOGLE_SHEET_ID: 'SEU_ID_AQUI'
+                </code>
+                <p>Para:</p>
+                <code style="display: block; background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    GOOGLE_SHEET_ID: '1ABC123DEF456GHI789'
+                </code>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">6. Upload</h3>
+                <p>Faça upload destes arquivos para GitHub Pages:</p>
+                <ul style="margin-left: 20px;">
+                    <li>index-simple.html → renomear para index.html</li>
+                    <li>sheets-config-simple.js</li>
+                    <li>sheets-parser-simple.js</li>
+                    <li>styles.css</li>
+                    <li>script.js</li>
+                </ul>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px;">
+                <h3 style="color: #d4a574; margin-bottom: 10px;">7. Testar</h3>
+                <p>Abra seu site e verifique:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Abra o Console (F12)</li>
+                    <li>Procure por "[Sheets]" nos logs</li>
+                    <li>Edite algo na planilha</li>
+                    <li>Aguarde 10 segundos</li>
+                    <li>Veja os dados atualizarem! 🎉</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <p>MVP - Google Sheets Integration Test</p>
+            <p>Abra o Console (F12) para ver os logs de integração</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="sheets-config-simple.js"></script>
+    <script src="sheets-parser-simple.js"></script>
+</body>
+</html>

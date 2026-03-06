@@ -12,7 +12,7 @@
 
 const SHEETS_CONFIG = {
     // ALTERE AQUI: Cole o ID da sua planilha
-    GOOGLE_SHEET_ID: 'SEU_ID_AQUI',
+    GOOGLE_SHEET_ID: '1fMEfkfzeUuTWDHg0WpZDE4SC5xkOivTtPdguwz28iEo',
     
     // Atualizar a cada 10 segundos (rápido para testes)
     UPDATE_INTERVAL: 10000,
